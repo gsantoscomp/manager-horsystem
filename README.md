@@ -13,7 +13,7 @@ O Laravel Sail inclui todos os serviços necessários para executar uma aplicaç
 1. Clone o repositório:
 
 ```
-git clone https://github.com/gsantoscomp/manager-horsystem.git
+git clone -b skeleton https://github.com/gsantoscomp/manager-horsystem.git
 cd seu_repositorio
 ```
 
