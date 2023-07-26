@@ -19,6 +19,23 @@ class AnimalController extends Controller
         return response()->json($animals);
     }
 
+    public function animalsByCompany()
+    {
+        $userAuthenticated = auth()->user();
+
+        $animals = Animal::with('client')
+                    ->whereHas('client', function ($query) use ($userAuthenticated) {
+                        $query->where('company_id', $userAuthenticated->company_id);
+                    })
+                    ->get();
+
+        foreach ($animals as $animal){
+            $animal->client;
+        }
+        
+        return response()->json($animals);
+    }
+
     public function show($id)
     {
         $animal = Animal::find($id);

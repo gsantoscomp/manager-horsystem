@@ -24,7 +24,8 @@ class UserPutRequest extends BaseRequest
             'email' => 'required|email|unique:users,email,'. $this->id,
             'password' => 'required|string|min:6',
             'name' => 'required|string',
-            'user_type_id' => 'required|exists:users_types,id'
+            'user_type_id' => 'required|exists:users_types,id',
+            'company_id' => 'nullable|exists:companies,id'
         ];
     }
 }

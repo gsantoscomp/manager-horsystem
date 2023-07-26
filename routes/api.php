@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProcedureController;
@@ -22,6 +23,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->group(function () {
+
+    Route::prefix('company')->group(function () {
+        Route::get('/animals', [AnimalController::class, 'animalsByCompany'])->name('company.animals');
+        Route::get('/users', [UserController::class, 'usersByCompany'])->name('company.users');
+    });
+
+    Route::prefix('companies')->group(function () {
+        Route::get('/', [CompanyController::class, 'index'])->name('companies.index');
+        Route::get('/{id}', [CompanyController::class, 'show'])->name('companies.show');
+        Route::post('/', [CompanyController::class, 'store'])->name('companies.store');
+        Route::put('update/{id}', [CompanyController::class, 'update'])->name('companies.update');
+        Route::delete('delete/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+    });
+
     Route::prefix('animals')->group(function () {
         Route::get('/', [AnimalController::class, 'index'])->name('animals.index');
         Route::get('/{id}', [AnimalController::class, 'show'])->name('animals.show');

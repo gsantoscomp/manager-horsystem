@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests;
 
-class UserPostRequest extends BaseRequest
+
+class CompanyPostRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,11 +21,8 @@ class UserPostRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
             'name' => 'required|string',
-            'user_type_id' => 'required|exists:users_types,id',
-            'company_id' => 'nullable|exists:companies,id',
+            'cnpj' => 'nullable|string'
         ];
     }
 }

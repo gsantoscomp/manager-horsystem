@@ -15,6 +15,22 @@ class UserController extends Controller
 
         foreach ($users as $user){
             $user->userType;
+            $user->company;
+        }
+
+        return response()->json($users);
+    }
+    
+    public function usersByCompany()
+    {
+        $authenticatedUser = auth()->user();
+
+        $users = User::with('company', 'userType')
+                    ->where('users.company_id', '=', $authenticatedUser->company_id)
+                    ->get();
+
+        foreach ($users as $user){
+            $user->userType;
         }
 
         return response()->json($users);
