@@ -20,6 +20,21 @@ class AppointmentController extends Controller
         return response()->json($appointments);
     }
 
+    public function appointmentsByCompany()
+    {
+        $userAuthenticated = auth()->user();
+
+        $appointments = Appointment::where('company_id', $userAuthenticated->company_id)
+                            ->get();
+
+        foreach ($appointments as $appointment){
+            $appointment->client;
+            $appointment->animal;
+        }
+
+        return response()->json($appointments);
+    }
+
     public function store(AppointmentPostRequest $request)
     {
 

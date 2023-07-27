@@ -16,6 +16,17 @@ class ClientController extends Controller
         return response()->json($clients);
     }
 
+    public function clientsByCompany()
+    {
+        $userAuthenticated = auth()->user();
+
+        $clients = Client::where('company_id', $userAuthenticated->company_id)
+                    ->get();
+
+        return response()->json($clients);
+    }
+
+
     public function store(ClientPostRequest $request)
     {
         $client = Client::create($request->all());

@@ -16,14 +16,17 @@ class ProcedureController extends Controller
         return response()->json($procedures);
     }
 
+    public function proceduresByCompany()
+    {
+        $userAuthenticated = auth()->user();
+
+        $procedures = Procedure::where('company_id', $userAuthenticated->company_id)->get();
+
+        return response()->json($procedures);
+    }
+
     public function store(ProcedurePostRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-        ]);
-
         $procedure = Procedure::create($request->all());
 
         return response()->json(['message' => 'Procedimento cadastrado com sucesso', 'data' => $procedure], 201);

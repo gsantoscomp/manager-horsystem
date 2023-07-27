@@ -27,6 +27,7 @@ class ClientPostRequest extends BaseRequest
             'document_type' => 'required|string',
             'document' => 'required|string|unique:clients,document',
             'address' => 'required|string',
+            'company_id' => 'required|exists:companies,id'
         ];
     }
 }

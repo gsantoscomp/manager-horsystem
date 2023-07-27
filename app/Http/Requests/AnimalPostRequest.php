@@ -23,6 +23,7 @@ class AnimalPostRequest extends BaseRequest
             'name' => 'required|string|max:255',
             'animal_type' => 'required|string|max:100',
             'client_id' => 'required|exists:clients,id',
+            'company_id' => 'required|exists:companies,id',
         ];
     }
 }

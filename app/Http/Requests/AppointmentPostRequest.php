@@ -22,6 +22,7 @@ class AppointmentPostRequest extends BaseRequest
         return [
             'client_id' => 'required|string|exists:clients,id',
             'animal_id' => 'required|string|exists:animals,id',
+            'company_id' => 'required|string|exists:companies,id',
         ];
     }
 }

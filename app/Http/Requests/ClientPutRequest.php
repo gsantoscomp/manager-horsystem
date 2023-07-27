@@ -28,6 +28,7 @@ class ClientPutRequest extends BaseRequest
             'document_type' => 'string|in:cpf,cnpj',
             'document' => 'string|unique:clients,document,'. $this->id,
             'address' => 'string',
+            'company_id' => 'required|exists:companies,id'
         ];
     }
 }

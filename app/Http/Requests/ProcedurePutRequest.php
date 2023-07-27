@@ -23,7 +23,8 @@ class ProcedurePutRequest extends BaseRequest
             'id' => 'required|exists:procedures,id',
             'name' => 'required|string|max:255',
             'price' => 'required|integer',
-            'description' => 'string',
+            'description' => 'nullable|string',
+            'company_id' => 'required|integer|exists:companies,id',
         ];
     }
 }

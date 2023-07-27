@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MedicinePostRequest;
 use App\Http\Requests\MedicinePutRequest;
 use Gsantoscomp\SharedVetDb\Models\Medicine;
-use Illuminate\Http\Request;
 
 class MedicineController extends Controller
 {
@@ -16,16 +15,17 @@ class MedicineController extends Controller
         return response()->json($medicines);
     }
 
+    public function medicinesByCompany()
+    {
+        $userAuthenticated = auth()->user();
+
+        $medicines = Medicine::where('company_id', $userAuthenticated->company_id)->get();
+
+        return response()->json($medicines);
+    }
+
     public function store(MedicinePostRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'quantity' => 'required',
-            'purchase_price' => 'required',
-            'sale_price' => 'required',
-            'description' => 'required',
-        ]);
-
         $medicine = Medicine::create($request->all());
 
         return response()->json(['message' => 'Medicamento cadastrado com sucesso', 'data' => $medicine], 201);

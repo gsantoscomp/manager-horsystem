@@ -25,8 +25,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->group(function () {
 
     Route::prefix('company')->group(function () {
+        Route::get('/clients', [ClientController::class, 'clientsByCompany'])->name('company.clients');
         Route::get('/animals', [AnimalController::class, 'animalsByCompany'])->name('company.animals');
         Route::get('/users', [UserController::class, 'usersByCompany'])->name('company.users');
+        Route::get('/appointments', [AppointmentController::class, 'appointmentsByCompany'])->name('company.appointments');
+        Route::get('/medicines', [MedicineController::class, 'medicinesByCompany'])->name('company.medicines');
+        Route::get('/procedures', [ProcedureController::class, 'proceduresByCompany'])->name('company.procedures');
     });
 
     Route::prefix('companies')->group(function () {

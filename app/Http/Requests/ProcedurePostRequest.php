@@ -22,7 +22,8 @@ class ProcedurePostRequest extends BaseRequest
         return [
             'name' => 'required|string|max:255',
             'price' => 'required|integer',
-            'description' => 'string',
+            'description' => 'nullable|string',
+            'company_id' => 'required|integer|exists:companies,id'
         ];
     }
 }

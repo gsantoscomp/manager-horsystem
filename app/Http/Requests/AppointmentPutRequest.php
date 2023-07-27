@@ -24,6 +24,7 @@ class AppointmentPutRequest extends BaseRequest
             'id' => 'required|exists:appointments,id',
             'user_id' => 'required|string|exists:users,id',
             'animal_id' => 'required|string|exists:animals,id',
+            'company_id' => 'required|string|exists:companies,id',
         ];
     }
 }

@@ -25,7 +25,8 @@ class MedicinePutRequest extends BaseRequest
             'quantity' => 'required|integer',
             'purchase_price' => 'required|integer',
             'sale_price' => 'required|integer',
-            'description' => 'string',
+            'description' => 'nullable|string',
+            'company_id' => 'required|integer|exists:companies,id',
         ];
     }
 }
